@@ -6117,7 +6117,7 @@ menu() {
     echoContent green "描述：八合一共存脚本\c"
     showInstallStatus
     echoContent red "\n=============================================================="
-    if [[ -n "${coreInstallType}" ]]; then
+        if [[ -n "${coreInstallType}" ]]; then
         echoContent yellow "1.重新安装"
     else
         echoContent yellow "1.安装"
@@ -6130,14 +6130,14 @@ menu() {
     #     echoContent yellow "3.切换Trojan[XTLS]"
     # fi
 
-    echoContent yellow "2.Hysteria管理"
-    echoContent yellow "3.REALITY管理"
+    echoContent yellow "4.Hysteria管理"
+    echoContent yellow "5.REALITY管理"
     echoContent skyBlue "-------------------------工具管理-----------------------------"
-    echoContent yellow "4.账号管理"
-    echoContent yellow "5.更换伪装站"
-    echoContent yellow "6.更新证书"
+    echoContent yellow "6.账号管理"
+    echoContent yellow "7.更换伪装站"
+    echoContent yellow "8.更新证书"
     # echoContent yellow "9.更换CDN节点"
-    echoContent yellow "7.IPv6分流"
+    echoContent yellow "10.IPv6分流"
     # echoContent yellow "11.WARP分流"
     # echoContent yellow "12.流媒体工具"
     # echoContent yellow "13.添加新端口"
@@ -6145,12 +6145,12 @@ menu() {
     # echoContent yellow "15.切换alpn"
     # echoContent yellow "16.域名黑名单"
     echoContent skyBlue "-------------------------版本管理-----------------------------"
-    echoContent yellow "8.core管理"
+    echoContent yellow "17.core管理"
     # echoContent yellow "18.更新脚本"
     # echoContent yellow "19.安装BBR、DD脚本"
     # echoContent skyBlue "-------------------------脚本管理-----------------------------"
-    echoContent yellow "9.查看日志"
-    echoContent yellow "10.卸载脚本"
+    echoContent yellow "20.查看日志"
+    echoContent yellow "21.卸载脚本"
     echoContent red "=============================================================="
     mkdirTools
     aliasInstall
@@ -6159,64 +6159,64 @@ menu() {
     1)
         selectCoreInstall
         ;;
-    # 2)
-    #     selectCoreInstall
-    #     ;;
-    # 3)
-    #     initXrayFrontingConfig 1
-    #     ;;
     2)
-        manageHysteria
+        selectCoreInstall
         ;;
     3)
-        manageReality 1
+        initXrayFrontingConfig 1
         ;;
     4)
-        manageAccount 1
+        manageHysteria
         ;;
     5)
-        updateNginxBlog 1
+        manageReality 1
         ;;
     6)
+        manageAccount 1
+        ;;
+    7)
+        updateNginxBlog 1
+        ;;
+    8)
         renewalTLS 1
         ;;
-    # 9)
-    #     updateV2RayCDN 1
-    #     ;;
-    7)
-        ipv6Routing 1
-        ;;
-    # 11)
-    #     warpRouting 1
-    #     ;;
-    # 12)
-    #     streamingToolbox 1
-    #     ;;
-    # 13)
-    #     addCorePort 1
-    #     ;;
-    # 14)
-    #     btTools 1
-    #     ;;
-    # 15)
-    #     switchAlpn 1
-    #     ;;
-    # 16)
-    #     blacklist 1
-    #     ;;
-    8)
-        coreVersionManageMenu 1
-        ;;
-    # 18)
-    #     updateV2RayAgent 1
-    #     ;;
-    # 19)
-    #     bbrInstall
-    #     ;;
     9)
-        checkLog 1
+        updateV2RayCDN 1
         ;;
     10)
+        ipv6Routing 1
+        ;;
+    11)
+        warpRouting 1
+        ;;
+    12)
+        streamingToolbox 1
+        ;;
+    13)
+        addCorePort 1
+        ;;
+    14)
+        btTools 1
+        ;;
+    15)
+        switchAlpn 1
+        ;;
+    16)
+        blacklist 1
+        ;;
+    17)
+        coreVersionManageMenu 1
+        ;;
+    18)
+        updateV2RayAgent 1
+        ;;
+    19)
+        bbrInstall
+        ;;
+    20)
+        checkLog 1
+        ;;
+    21)
         unInstall 1
         ;;
     esac
