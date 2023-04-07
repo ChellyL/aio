@@ -99,12 +99,8 @@ TrojanPanel(){
 }
 
 echo "+-------------------------------------------------------------+"
-echo "|                                                             |"
-echo "|                         小鸡常用脚本                         |"                 
-echo "|                                                             |"
-echo "|                                                             |"                     
+echo "|                         自用小鸡脚本                        |"                                      
 echo "+-------------------------------------------------------------+"
- 
 green "1.  新鸡更新"
 green "2.  更改时区"
 green "3.  bbr加速+一键dd"
@@ -112,17 +108,18 @@ green "4.  ip归属及ipv46转换"
 green "5.  流媒体测试"
 green "6.  warp设置"
 white "----------------------------------------------------------------------------------"
-green "7.  安装SS"
-green "8.  安装acme证书管理"
-green "9.  安装acme证书管理 Misaka原版"
-green "10. 安装歇斯底里"
-green "11. 安装naiveproxy"
-green "12. 安装naiveproxy yg原版"
-green "13. 安装v2ray"
-green '14. 安装v2ray mack-a原版'
-green '15. 安装Tg专用代理（Go版）'
-green "16. jinwyp版一键  "
-green "17. TrojanPanel"
+green "7.  SS"
+green "8.  acme证书管理-改"
+green "9.  歇斯底里"
+green "10. naiveproxy-改"
+green "11. v2ray-改"
+green '12. Tg专用代理（Go版）'
+green "13. jinwyp版一键  "
+green "14. TrojanPanel"
+white "----------------------------------------------------------------------------------"
+green "15. acme证书管理 Misaka原版"
+green "16. naiveproxy yg原版"
+green '17. v2ray mack-a原版'
 red "0.  退出"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
@@ -162,31 +159,31 @@ case "$num" in
     acme
     ;;
     9)
-    acme_misaka
-    ;;
-    10)
     hysteria
     ;;
-    11)
+    10)
     naive
     ;;
-    12)
-    naive_yg
-    ;;
-    13)
+    11)
     V2Ray
     ;;
-    14)
-    V2Ray_ma
-    ;;
-    15)
+    12)
     Tg_go
     ;;
-    16)
+    13)
     V2Ray_jin
     ;;
-    17)
+    14)
     TrojanPanel
+    ;;
+    15)
+    acme_misaka
+    ;;
+    16)
+    naive_yg
+    ;;
+    17)
+    V2Ray_ma
     ;;
     0)
     exit
