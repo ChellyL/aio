@@ -12,9 +12,6 @@ yellow(){ echo -e "\033[33m$1\033[0m";}
 white(){ echo -e "\033[37m$1\033[0m";}
 readp(){ read -p "$(yellow "$1")" $2;}
 
-mkdir /etc/naive/
-wget -P /etc/naive/ https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh
-chmod +x /etc/naive/naiveproxy.sh
 
 [[ $EUID -ne 0 ]] && yellow "请以root模式运行脚本" && exit
 #[[ -e /etc/hosts ]] && grep -qE '^ *172.65.251.78 gitlab.com' /etc/hosts || echo -e '\n172.65.251.78 gitlab.com' >> /etc/hosts
@@ -541,6 +538,13 @@ qrencode -o - -t ANSIUTF8 "$(cat /root/url.txt)"
 }
 
 insna(){
+if [-d "/etc/naive/" ];then
+  true
+else
+  mkdir /etc/naive/
+fi
+wget -P /etc/naive/ https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh
+chmod +x /etc/naive/naiveproxy.sh
 if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/caddy/Caddyfile' ]]; then
 green "已安装naiveproxy，重装请先执行卸载功能" && exit
 fi
