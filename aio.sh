@@ -11,6 +11,7 @@ updatevps(){
 #2 更改时区
 changetz(){
 	sudo timedatectl set-timezone Asia/Shanghai
+	echo "已修改时区为CST +8"
 }
 
 #3 安装BBR 锐速
@@ -169,6 +170,6 @@ case "$num" in
 	TrojanPanel
 	;;
 	*)
-	echo "请输入正确数字 [0-35]"
+	echo "请输入正确数字 [0-16]"
 	;;
  esac
