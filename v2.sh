@@ -3130,7 +3130,7 @@ EOF
 }
 
 # 自定义CDN IP
-customCDNIP() {
+customCDNIP() { true }
 #     echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
 #     echoContent red "\n=============================================================="
 #     echoContent yellow "# 注意事项"
@@ -3158,7 +3158,7 @@ customCDNIP() {
 #         echoContent yellow "\n ---> 不使用"
 #         ;;
 #     esac
-}
+
 # 通用
 defaultBase64Code() {
     local type=$1
@@ -5572,10 +5572,10 @@ menu() {
     echoContent green "Github：https://github.com/mack-a/v2ray-agent"
     echoContent green "描述：八合一共存脚本\c"
     showInstallStatus
-    echoContent red "\n=============================================================="
-    echoContent red "                        推广区                      "
-    echoContent green "推广请联系TG：@mackaff\n"
-    echoContent green "AFF捐赠：https://github.com/mack-a/v2ray-agent/blob/master/documents/donation_aff.md\n"
+    # echoContent red "\n=============================================================="
+    # echoContent red "                        推广区                      "
+    # echoContent green "推广请联系TG：@mackaff\n"
+    # echoContent green "AFF捐赠：https://github.com/mack-a/v2ray-agent/blob/master/documents/donation_aff.md\n"
     echoContent red "=============================================================="
     if [[ -n "${coreInstallType}" ]]; then
         echoContent yellow "1.重新安装"
@@ -5595,7 +5595,7 @@ menu() {
     echoContent yellow "5.账号管理"
     echoContent yellow "6.更换伪装站"
     echoContent yellow "7.更新证书"
-    echoContent yellow "8.更换CDN节点"
+    #echoContent yellow "8.更换CDN节点"
     echoContent yellow "9.IPv6分流"
     echoContent yellow "10.WARP分流"
     echoContent yellow "11.流媒体工具"
