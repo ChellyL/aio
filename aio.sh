@@ -16,10 +16,10 @@ white(){ echo -e "\033[37m$1\033[0m";}
 updatevps(){
     apt update && apt upgrade
     read -p "要不要顺便装一下docker [Y|n]:" docker
-    if [[ $docker =~ 'n|N' ]];then
-    true
+    if [[ "${docker}"=~'n|N' ]]; then
+        true
     else
-    apt install docker && apt install docker-compose
+        apt install docker && apt install docker-compose
     fi
 }
 
@@ -143,8 +143,7 @@ echo "jinway：/nginxweb/cert"
 echo "acme：/root/"
 echo "TrojanPanel: /tpdata/caddy/cert/"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-echo ""
-read -p " 请输入数字 [0-17]:" num
+read -p "请输入数字 [0-17]:" num
 case "$num" in
     1)
     updatevps
