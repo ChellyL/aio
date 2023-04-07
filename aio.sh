@@ -108,9 +108,15 @@ echo && echo -e "
  ${Green_font_prefix}14.${Font_color_suffix} 安装Tg专用代理（Go版）
  ${Green_font_prefix}15.${Font_color_suffix} jinwyp版一键  
  ${Green_font_prefix}16.${Font_color_suffix} TrojanPanel
+ 证书：
+ hysteria：/etc/hihy/cert
+ naivepproxy：/root/ygkkkca
+ mack-a：/etc/v2ray-agent/tls
+ jinway：/nginxweb/cert
+ acme：/root/
+ 修改：/etc/acme/
  " && echo
   
-fi
 echo
 read -e -p " 请输入数字 [0-35]:" num
 case "$num" in
