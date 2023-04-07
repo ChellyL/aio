@@ -3353,33 +3353,34 @@ EOF
 # 初始化Xray Reality配置
 # 自定义CDN IP
 customCDNIP() {
-    echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
-    echoContent red "\n=============================================================="
-    echoContent yellow "# 注意事项"
-    echoContent yellow "\n教程地址:"
-    echoContent skyBlue "https://www.v2ray-agent.com/archives/cloudflarezi-xuan-ip"
-    echoContent red "\n如对Cloudflare优化不了解，请不要使用"
-    echoContent yellow "\n 1.CNAME www.digitalocean.com"
-    echoContent yellow " 2.CNAME who.int"
-    echoContent yellow " 3.CNAME blog.hostmonit.com"
+    add="${domain}"
+    # echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
+    # echoContent red "\n=============================================================="
+    # echoContent yellow "# 注意事项"
+    # echoContent yellow "\n教程地址:"
+    # echoContent skyBlue "https://www.v2ray-agent.com/archives/cloudflarezi-xuan-ip"
+    # echoContent red "\n如对Cloudflare优化不了解，请不要使用"
+    # echoContent yellow "\n 1.CNAME www.digitalocean.com"
+    # echoContent yellow " 2.CNAME who.int"
+    # echoContent yellow " 3.CNAME blog.hostmonit.com"
 
-    echoContent skyBlue "----------------------------"
-    read -r -p "请选择[回车不使用]:" selectCloudflareType
-    case ${selectCloudflareType} in
-    1)
-        add="www.digitalocean.com"
-        ;;
-    2)
-        add="who.int"
-        ;;
-    3)
-        add="blog.hostmonit.com"
-        ;;
-    *)
-        add="${domain}"
-        echoContent yellow "\n ---> 不使用"
-        ;;
-    esac
+    # echoContent skyBlue "----------------------------"
+    # read -r -p "请选择[回车不使用]:" selectCloudflareType
+    # case ${selectCloudflareType} in
+    # 1)
+    #     add="www.digitalocean.com"
+    #     ;;
+    # 2)
+    #     add="who.int"
+    #     ;;
+    # 3)
+    #     add="blog.hostmonit.com"
+    #     ;;
+    # *)
+    #     add="${domain}"
+    #     echoContent yellow "\n ---> 不使用"
+    #     ;;
+    # esac
 }
 # 通用
 defaultBase64Code() {
