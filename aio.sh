@@ -15,7 +15,7 @@ white(){ echo -e "\033[37m$1\033[0m";}
 #1 新机器更新一下
 updatevps(){
     apt update && apt upgrade
-    read -p "要不要顺便装一下docker?[Y|n]:" docker
+    read -p "顺便装一下docker?[Y|n]:" docker
     if [[ "${docker}"=='n|N' ]]; then
         true
     else
@@ -115,26 +115,26 @@ TrojanPanel(){
 echo "+-------------------------------------------------------------+"
 echo "|                         自用小鸡脚本                        |"                                      
 echo "+-------------------------------------------------------------+"
-green "1.  新鸡fresh up"
-green "2.  更改时区CST"
-green "3.  bbr加速+一键dd"
-green "4.  ip归属及ipv46转换"
-green "5.  流媒体测试"
-green "6.  warp设置"
-green "7.  使用root登录[适合甲骨文、AZ等]"
+green "01.  新鸡fresh up"
+green "02.  更改时区CST"
+green "03.  bbr加速+一键dd"
+green "04.  ip归属及ipv46转换"
+green "05.  流媒体测试"
+green "06.  warp设置"
+green "07.  使用root登录[适合甲骨文、AZ等]"
 white "--------------------------------------------------------------"
-green "8.  SS"
-green "9.  acme证书管理"
+green "08.  SS"
+green "09.  acme证书管理"
 green "10.  歇斯底里"
-green "11. naiveproxy-简化"
-green "12. v2ray-简化"
-green '13. Tg代理mtg'
-green "14. jinwyp版一键  "
-green "15. TrojanPanel"
+green "11.  naiveproxy-简化"
+green "12.  v2ray-简化"
+green '13.  Tg代理mtg'
+green "14.  jinwyp版一键  "
+green "15.  TrojanPanel"
 white "---------------------------------------------------------------"
-green "16. naiveproxy yg原版"
-green '17. v2ray mack-a原版'
-red "0.  退出"
+green "16.  naiveproxy yg原版"
+green '17.  v2ray mack-a原版'
+red " 0.  退出"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
 echo "hysteria：/root/.local/share/certmagic/certificates/acme-v02.api.letsencrypt.org-directory/"
