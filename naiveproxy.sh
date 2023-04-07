@@ -488,9 +488,9 @@ red "未正常安装naiveproxy" && exit
 fi
 wget -N https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh 
 mv /root/naiveproxy.sh /etc/naive/naiveproxy.sh 
-chmod +x /etc/naive/naiveproxy.sh 
-ln -sf /etc/naive/naiveproxy.sh /usr/bin/na
-green "naiveproxy-yg安装脚本升级成功" && na
+#chmod +x /etc/naive/naiveproxy.sh 
+#ln -sf /etc/naive/naiveproxy.sh /usr/bin/na
+green "naiveproxy-yg安装脚本升级成功" 
 }
 
 upnaive(){
@@ -500,7 +500,7 @@ fi
 green "\n升级naiveproxy内核版本\n"
 inscaddynaive
 systemctl restart caddy
-green "naiveproxy内核版本升级成功" && na
+green "naiveproxy内核版本升级成功" 
 }
 
 unins(){
@@ -515,7 +515,7 @@ green "naiveproxy卸载完成！"
 sussnaiveproxy(){
 systemctl restart caddy
 if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/caddy/Caddyfile' ]]; then
-green "naiveproxy服务启动成功" && naiveproxyshare
+green "naiveproxy服务启动成功" iveproxyshare
 else
 red "naiveproxy服务启动失败，请运行systemctl status caddy查看服务状态并反馈，脚本退出" && exit
 fi
@@ -538,13 +538,6 @@ qrencode -o - -t ANSIUTF8 "$(cat /root/url.txt)"
 }
 
 insna(){
-if [-d "/etc/naive/" ];then
-  true
-else
-  mkdir /etc/naive/
-fi
-wget -P /etc/naive/ https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh
-chmod +x /etc/naive/naiveproxy.sh
 if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/caddy/Caddyfile' ]]; then
 green "已安装naiveproxy，重装请先执行卸载功能" && exit
 fi
@@ -555,8 +548,8 @@ if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/cadd
 green "naiveproxy服务启动成功"
 sed -i '/systemctl restart caddy/d' /etc/crontab
 echo "0 4 * * * systemctl restart caddy >/dev/null 2>&1" >> /etc/crontab
-chmod +x /etc/naive/naiveproxy.sh  
-ln -sf /etc/naive/naiveproxy.sh  /usr/bin/na
+#chmod +x /etc/naive/naiveproxy.sh  
+#ln -sf /etc/naive/naiveproxy.sh  /usr/bin/na
 cp -f /etc/caddy/Caddyfile /etc/caddy/reCaddyfile >/dev/null 2>&1
 if [[ ! $vi =~ lxc|openvz ]]; then
 sysctl -w net.core.rmem_max=8000000
@@ -589,7 +582,7 @@ naiveproxystatus
 clear
 green "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" 
 white "甬哥Github项目  ：github.com/yonggekkk"
-green "naiveproxy-yg脚本安装成功后，再次进入脚本的快捷方式为 na"
+green ""
 red "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 green "  1. 安装naiveproxy（必选）" 
 green "  2. 卸载naiveproxy"
