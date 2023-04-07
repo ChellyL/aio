@@ -5111,12 +5111,12 @@ EOF
 # v2ray-core个性化安装
 customV2RayInstall() {
     echoContent skyBlue "\n========================个性化安装============================"
-    echoContent yellow "VLESS前置，默认安装0，如果只需要安装0，则只选择0即可"
+    echoContent yellow "VLESS前置，默认安装"
     #echoContent yellow "0.VLESS+TLS_Vision+TCP"
     #echoContent yellow "1.VLESS+TLS+WS[CDN]"
     #echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-    echoContent yellow "3.VMess+TLS+WS[CDN]"
-    echoContent yellow "4.Trojan+TLS"
+    echoContent yellow "VMess+TLS+WS[CDN]"
+    echoContent yellow "Trojan+TLS"
     #echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
     #read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
     echoContent skyBlue "--------------------------------------------------------------"
@@ -5237,6 +5237,7 @@ selectCoreInstall() {
     echoContent yellow "安装v2ray-core"
     echoContent red "=============================================================="
     selectCoreType="2"
+    selectInstallType="2"
     case ${selectCoreType} in
     1)
         if [[ "${selectInstallType}" == "2" ]]; then
@@ -5271,7 +5272,7 @@ selectCoreInstall() {
 # v2ray-core 安装
 v2rayCoreInstall() {
     cleanUp xrayClean
-    selectCustomInstallType=
+    selectCustomInstallType=34
     totalProgress=13
     installTools 2
     # 申请tls
@@ -5587,33 +5588,33 @@ menu() {
         echoContent yellow "1.安装"
     fi
 
-    echoContent yellow "2.任意组合安装"
-    if echo ${currentInstallProtocolType} | grep -q trojan; then
-        echoContent yellow "3.切换VLESS[XTLS]"
-    elif echo ${currentInstallProtocolType} | grep -q 0; then
-        echoContent yellow "3.切换Trojan[XTLS]"
-    fi
+    #echoContent yellow "2.任意组合安装"
+    # if echo ${currentInstallProtocolType} | grep -q trojan; then
+    #     echoContent yellow "3.切换VLESS[XTLS]"
+    # elif echo ${currentInstallProtocolType} | grep -q 0; then
+    #     echoContent yellow "3.切换Trojan[XTLS]"
+    # fi
 
-    echoContent yellow "4.Hysteria管理"
+    echoContent yellow "2.Hysteria管理"
     echoContent skyBlue "-------------------------工具管理-----------------------------"
-    echoContent yellow "5.账号管理"
-    echoContent yellow "6.更换伪装站"
-    echoContent yellow "7.更新证书"
+    echoContent yellow "3.账号管理"
+    echoContent yellow "4.更换伪装站"
+    echoContent yellow "5.更新证书"
     #echoContent yellow "8.更换CDN节点"
-    echoContent yellow "9.IPv6分流"
-    echoContent yellow "10.WARP分流"
-    echoContent yellow "11.流媒体工具"
-    echoContent yellow "12.添加新端口"
-    echoContent yellow "13.BT下载管理"
-    echoContent yellow "14.切换alpn"
-    echoContent yellow "15.域名黑名单"
+    echoContent yellow "6.IPv6分流"
+    # echoContent yellow "10.WARP分流"
+    # echoContent yellow "11.流媒体工具"
+    # echoContent yellow "12.添加新端口"
+    # echoContent yellow "13.BT下载管理"
+    # echoContent yellow "14.切换alpn"
+    # echoContent yellow "15.域名黑名单"
     echoContent skyBlue "-------------------------版本管理-----------------------------"
-    echoContent yellow "16.core管理"
-    echoContent yellow "17.更新脚本"
-    echoContent yellow "18.安装BBR、DD脚本"
+    echoContent yellow "7.core管理"
+    # echoContent yellow "17.更新脚本"
+    echoContent yellow "8.安装BBR、DD脚本"
     echoContent skyBlue "-------------------------脚本管理-----------------------------"
-    echoContent yellow "19.查看日志"
-    echoContent yellow "20.卸载脚本"
+    echoContent yellow "9.查看日志"
+    echoContent yellow "10.卸载脚本"
     echoContent red "=============================================================="
     mkdirTools
     aliasInstall
@@ -5622,61 +5623,61 @@ menu() {
     1)
         selectCoreInstall
         ;;
+    # 2)
+    #     selectCoreInstall
+    #     ;;
+    # 3)
+    #     initXrayFrontingConfig 1
+    #     ;;
     2)
-        selectCoreInstall
-        ;;
-    3)
-        initXrayFrontingConfig 1
-        ;;
-    4)
         manageHysteria
         ;;
-    5)
+    3)
         manageAccount 1
         ;;
-    6)
+    4)
         updateNginxBlog 1
         ;;
-    7)
+    5)
         renewalTLS 1
         ;;
-    8)
-        updateV2RayCDN 1
-        ;;
-    9)
+    # 8)
+    #     updateV2RayCDN 1
+        # ;;
+    6)
         ipv6Routing 1
         ;;
-    10)
-        warpRouting 1
-        ;;
-    11)
-        streamingToolbox 1
-        ;;
-    12)
-        addCorePort 1
-        ;;
-    13)
-        btTools 1
-        ;;
-    14)
-        switchAlpn 1
-        ;;
-    15)
-        blacklist 1
-        ;;
-    16)
+    # 10)
+    #     warpRouting 1
+    #     ;;
+    # 11)
+    #     streamingToolbox 1
+    #     ;;
+    # 12)
+    #     addCorePort 1
+    #     ;;
+    # 13)
+    #     btTools 1
+    #     ;;
+    # 14)
+    #     switchAlpn 1
+    #     ;;
+    # 15)
+    #     blacklist 1
+    #     ;;
+    7)
         coreVersionManageMenu 1
         ;;
-    17)
-        updateV2RayAgent 1
-        ;;
-    18)
+    # 17)
+    #     updateV2RayAgent 1
+    #     ;;
+    8)
         bbrInstall
         ;;
-    19)
+    9)
         checkLog 1
         ;;
-    20)
+    10)
         unInstall 1
         ;;
     esac
