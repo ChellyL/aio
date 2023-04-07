@@ -11,7 +11,6 @@ red(){ echo -e "\033[31m$1\033[0m";}
 green(){ echo -e "\033[32m$1\033[0m";}
 yellow(){ echo -e "\033[33m$1\033[0m";}
 white(){ echo -e "\033[37m$1\033[0m";}
-readp(){ read -p "$(yellow "$1")" $2;}
 
 #1 新机器更新一下
 updatevps(){
@@ -128,9 +127,10 @@ echo "naivepproxy：/root/ygkkkca"
 echo "mack-a：/etc/v2ray-agent/tls"
 echo "jinway：/nginxweb/cert"
 echo "acme：/root/"
+echo "TrojanPanel: /tpdata/caddy/cert/"
 echo "修改：/etc/acme/"
 echo ""
-read -e -p " 请输入数字 [0-35]:" num
+read -p " 请输入数字 [0-16]:" num
 case "$num" in
 	1)
 	updatevps
