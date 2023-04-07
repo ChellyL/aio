@@ -561,7 +561,7 @@ fi
 red "======================================================================================"
 url="naive+https://${user}:${pswd}@${ym}:$port?padding=true#Naive"
 echo ${url} > /root/url.txt
-green "\nnaiveproxy代理服务安装完成，生成脚本的快捷方式为 na" && sleep 3
+green "\nnaiveproxy代理服务安装完成" && sleep 3
 blue "\nv2rayn客户端配置文件v2rayn.json保存到 /root/naive.json\n"
 yellow "$(cat /root/naive.json)\n"
 blue "分享链接保存到 /root/url.txt" && sleep 3
