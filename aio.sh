@@ -2,6 +2,16 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
+red='\033[0;31m'
+yellow='\033[0;33m'
+bblue='\033[0;34m'
+plain='\033[0m'
+blue(){ echo -e "\033[36m$1\033[0m";}
+red(){ echo -e "\033[31m$1\033[0m";}
+green(){ echo -e "\033[32m$1\033[0m";}
+yellow(){ echo -e "\033[33m$1\033[0m";}
+white(){ echo -e "\033[37m$1\033[0m";}
+readp(){ read -p "$(yellow "$1")" $2;}
 
 #1 新机器更新一下
 updatevps(){
@@ -84,41 +94,43 @@ TrojanPanel(){
       source <(curl -L https://github.com/trojanpanel/install-script/raw/main/install_script.sh)
 }
 
-echo && echo -e " 
-+-------------------------------------------------------------+
-|                                                             | 
-|                         小鸡常用脚本                         |                   
-|                                                             |
-|                                                             |
-|                                                             |                     
-+-------------------------------------------------------------+
+echo" 
+echo "+-------------------------------------------------------------+"
+echo "|                                                             |"
+echo "|                         小鸡常用脚本                         |"                 
+echo "|                                                             |"
+echo "|                                                             |"
+echo "|                                                             |"                     
+echo "+-------------------------------------------------------------+"
  
- ${Green_font_prefix}1.${Font_color_suffix}  新鸡更新
- ${Green_font_prefix}2.${Font_color_suffix}  更改时区
- ${Green_font_prefix}3.${Font_color_suffix}  加速系列：Bbr系列、锐速
- ${Green_font_prefix}4.${Font_color_suffix}  ip归属及ipv46转换
- ${Green_font_prefix}5.${Font_color_suffix}  流媒体测试
- ${Green_font_prefix}6.${Font_color_suffix}  warp设置
- ${Green_font_prefix}7.${Font_color_suffix}  安装SS
- ${Green_font_prefix}8.${Font_color_suffix}  安装证书
- ${Green_font_prefix}9.${Font_color_suffix}  安装歇斯底里
- ${Green_font_prefix}10.${Font_color_suffix} 安装naiveproxy
- ${Green_font_prefix}11.${Font_color_suffix} 安装naiveproxy yg原版
- ${Green_font_prefix}12.${Font_color_suffix} 安装v2ray
- ${Green_font_prefix}13.${Font_color_suffix} 安装v2ray mack-a原版
- ${Green_font_prefix}14.${Font_color_suffix} 安装Tg专用代理（Go版）
- ${Green_font_prefix}15.${Font_color_suffix} jinwyp版一键  
- ${Green_font_prefix}16.${Font_color_suffix} TrojanPanel
- 证书：
- hysteria：/etc/hihy/cert
- naivepproxy：/root/ygkkkca
- mack-a：/etc/v2ray-agent/tls
- jinway：/nginxweb/cert
- acme：/root/
- 修改：/etc/acme/
- " && echo
-  
-echo
+green "1.  新鸡更新"
+green "2.  更改时区"
+green "3.  加速系列：Bbr系列、锐速"
+green "4.  ip归属及ipv46转换"
+green "5.  流媒体测试"
+green "6.  warp设置"
+white "----------------------------------------------------------------------------------"
+green "7.  安装SS"
+green "8.  安装证书"
+green "9.  安装歇斯底里"
+green "10. 安装naiveproxy"
+green "11. 安装naiveproxy yg原版"
+green "12. 安装v2ray"
+green '13. 安装v2ray mack-a原版'
+green '14. 安装Tg专用代理（Go版）'
+green "15. jinwyp版一键  "
+green "16. TrojanPanel"
+red "0. 退出"
+red "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+echo "证书所在："
+echo ""
+echo "hysteria：/etc/hihy/cert"
+echo "naivepproxy：/root/ygkkkca"
+echo "mack-a：/etc/v2ray-agent/tls"
+echo "jinway：/nginxweb/cert"
+echo "acme：/root/"
+echo "修改：/etc/acme/"
+
 read -e -p " 请输入数字 [0-35]:" num
 case "$num" in
 	1)
@@ -168,6 +180,9 @@ case "$num" in
 	;;
 	16)
 	TrojanPanel
+	;;
+	0)
+	exit
 	;;
 	*)
 	echo "请输入正确数字 [0-16]"
