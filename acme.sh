@@ -73,6 +73,7 @@ install_base(){
 }
 
 install_acme(){
+    mkdir /ect/acme
     install_base
     read -rp "请输入注册邮箱 (例: admin@gmail.com, 或留空自动生成一个gmail邮箱): " acmeEmail
     if [[ -z $acmeEmail ]]; then
