@@ -94,7 +94,6 @@ TrojanPanel(){
       source <(curl -L https://github.com/trojanpanel/install-script/raw/main/install_script.sh)
 }
 
-echo" 
 echo "+-------------------------------------------------------------+"
 echo "|                                                             |"
 echo "|                         小鸡常用脚本                         |"                 
