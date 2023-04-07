@@ -3130,7 +3130,8 @@ EOF
 }
 
 # 自定义CDN IP
-customCDNIP() { true }
+customCDNIP() { add="${domain}" }
+#     case ${selectCloudflareType} in 
 #     echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
 #     echoContent red "\n=============================================================="
 #     echoContent yellow "# 注意事项"
