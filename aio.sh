@@ -15,6 +15,12 @@ white(){ echo -e "\033[37m$1\033[0m";}
 #1 新机器更新一下
 updatevps(){
     apt update && apt upgrade
+    read -p "要不要顺便装一下docker [Y|n]:" docker
+    if [[ $docker =~ 'n|N' ]];then
+    true
+    else
+    apt install docker && apt install docker-compose
+    fi
 }
 
 #2 更改时区
@@ -50,12 +56,19 @@ ss(){
 
 #8 安装证书
 acme(){
-    bash <(curl -s -L https://raw.githubusercontent.com/ChellyL/aio/main/acme.sh)
+    wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/acme-script/main/acme.sh && bash acme.sh
 }
 
-#9 安装证书 原版
-acme_misaka(){
-    wget -N --no-check-certificate https://raw.githubusercontent.com/Misaka-blog/acme-script/main/acme.sh && bash acme.sh
+#9 改root登录
+login(){
+    echo "--------------------------------------------------------------"
+    echo "sudo -i        # 转为root权限 "
+    echo "sudo passwd    # 设置root用户密码"
+    echo "输入一下两行代码："
+    echo "sudo sed -i 's/^.\*PermitRootLogin.\*/PermitRootLogin yes/g' /etc/ssh/sshd\_config;"
+    echo "sudo sed -i 's/^.\*PasswordAuthentication.\*/PasswordAuthentication yes/g' /etc/ssh/sshd\_config;"
+    echo "sudo service sshd restart     # 重启ssh"
+    echo "--------------------------------------------------------------"
 }
 
 #10 安装歇斯底里
@@ -101,27 +114,27 @@ TrojanPanel(){
 echo "+-------------------------------------------------------------+"
 echo "|                         自用小鸡脚本                        |"                                      
 echo "+-------------------------------------------------------------+"
-green "1.  新鸡更新"
-green "2.  更改时区"
+green "1.  新鸡fresh up"
+green "2.  更改时区CST"
 green "3.  bbr加速+一键dd"
 green "4.  ip归属及ipv46转换"
 green "5.  流媒体测试"
 green "6.  warp设置"
-white "----------------------------------------------------------------------------------"
-green "7.  SS"
-green "8.  acme证书管理-改"
-green "9.  歇斯底里"
-green "10. naiveproxy-改"
-green "11. v2ray-改"
-green '12. Tg专用代理（Go版）'
-green "13. jinwyp版一键  "
-green "14. TrojanPanel"
-white "----------------------------------------------------------------------------------"
-green "15. acme证书管理 Misaka原版"
+green "7.  使用root登录[适合甲骨文、AZ等]"
+white "--------------------------------------------------------------"
+green "8.  SS"
+green "9.  acme证书管理"
+green "10.  歇斯底里"
+green "11. naiveproxy-简化"
+green "12. v2ray-简化"
+green '13. Tg代理mtg'
+green "14. jinwyp版一键  "
+green "15. TrojanPanel"
+white "---------------------------------------------------------------"
 green "16. naiveproxy yg原版"
 green '17. v2ray mack-a原版'
 red "0.  退出"
-blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
 echo "hysteria：/root/.local/share/certmagic/certificates/acme-v02.api.letsencrypt.org-directory/"
 echo "naivepproxy：/root/ygkkkca"
@@ -129,8 +142,7 @@ echo "mack-a：/etc/v2ray-agent/tls"
 echo "jinway：/nginxweb/cert"
 echo "acme：/root/"
 echo "TrojanPanel: /tpdata/caddy/cert/"
-echo "修改：/etc/acme/"
-blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo ""
 read -p " 请输入数字 [0-17]:" num
 case "$num" in
@@ -153,31 +165,31 @@ case "$num" in
     warp
     ;;
     7)
-    ss
+    login
     ;;
     8)
-    acme
+    ss
     ;;
     9)
-    hysteria
+    acme
     ;;
     10)
-    naive
+    hysteria
     ;;
     11)
-    V2Ray
+    naive
     ;;
     12)
-    Tg_go
+    V2Ray
     ;;
     13)
-    V2Ray_jin
+    Tg_go
     ;;
     14)
-    TrojanPanel
+    V2Ray_jin
     ;;
     15)
-    acme_misaka
+    TrojanPanel
     ;;
     16)
     naive_yg
