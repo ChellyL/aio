@@ -62,8 +62,10 @@ acme(){
 #9 改root登录
 login(){
     echo "--------------------------------------------------------------"
+    echo "使用root登录，按提示操作"
+    echo ""
     echo "sudo -i        # 转为root权限 "
-    echo "sudo passwd    # 设置root用户密码"
+    echo "sudo passwd +你的登录密码   # 设置root用户密码"
     echo "输入一下两行代码："
     echo "sudo sed -i 's/^.\*PermitRootLogin.\*/PermitRootLogin yes/g' /etc/ssh/sshd\_config;"
     echo "sudo sed -i 's/^.\*PasswordAuthentication.\*/PasswordAuthentication yes/g' /etc/ssh/sshd\_config;"
