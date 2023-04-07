@@ -1,9 +1,6 @@
 #!/bin/bash
 naygV="23.3.17 V 2.2"
 remoteV=`wget -qO- https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh | sed  -n 2p | cut -d '"' -f 2`
-mkdir /etc/naive/
-wget -P /etc/naive/ https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh
-chmod +x /etc/naive/naiveproxy.sh
 red='\033[0;31m'
 yellow='\033[0;33m'
 bblue='\033[0;34m'
@@ -14,6 +11,11 @@ green(){ echo -e "\033[32m$1\033[0m";}
 yellow(){ echo -e "\033[33m$1\033[0m";}
 white(){ echo -e "\033[37m$1\033[0m";}
 readp(){ read -p "$(yellow "$1")" $2;}
+
+mkdir /etc/naive/
+wget -P /etc/naive/ https://raw.githubusercontent.com/ChellyL/aio/main/naiveproxy.sh
+chmod +x /etc/naive/naiveproxy.sh
+
 [[ $EUID -ne 0 ]] && yellow "请以root模式运行脚本" && exit
 #[[ -e /etc/hosts ]] && grep -qE '^ *172.65.251.78 gitlab.com' /etc/hosts || echo -e '\n172.65.251.78 gitlab.com' >> /etc/hosts
 yellow " 请稍等3秒……正在扫描vps类型及参数中……"
@@ -195,7 +197,7 @@ sed -i '/--cron/d' /etc/crontab
 sleep 2
 wget -N https://gitlab.com/rwkgyg/acme-script/raw/main/acme.sh && bash acme.sh
 ym=$(cat /etc/acme/ca.log)
-green "证书放在/etc/acme路径中"
+green "证书放在 /etc/acme/ 路径中"
 if [[ ! -f /etc/acme/cert.crt && ! -f /etc/acme/private.key ]] && [[ ! -s /etc/acme/cert.crt && ! -s /etc/acme/private.key ]]; then
 red "证书申请失败，脚本退出" && exit
 fi
@@ -268,9 +270,9 @@ blue "已确认密码：${pswd}\n"
 }
 
 insweb(){
-readp "设置naiveproxy伪装网址，注意：不要带https（回车跳过，默认为 bing.com ）：" web
+readp "设置naiveproxy伪装网址，注意：不要带https（回车跳过，默认为 豆瓣电影 ）：" web
 if [[ -z ${web} ]]; then
-naweb=bing.com
+naweb=movie.douban.com
 else
 naweb=$web
 fi
@@ -509,7 +511,7 @@ systemctl stop caddy >/dev/null 2>&1
 systemctl disable caddy >/dev/null 2>&1
 sed -i '/systemctl restart caddy/d' /etc/crontab
 rm -f /etc/systemd/system/caddy.service
-rm -rf /usr/bin/caddy /etc/caddy /etc/naive /etc/naiveproxy.sh /usr/bin/na
+rm -rf /usr/bin/caddy /etc/caddy /etc/naive /etc/naive/naiveproxy.sh  /usr/bin/na
 green "naiveproxy卸载完成！"
 }
 
@@ -549,8 +551,8 @@ if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/cadd
 green "naiveproxy服务启动成功"
 sed -i '/systemctl restart caddy/d' /etc/crontab
 echo "0 4 * * * systemctl restart caddy >/dev/null 2>&1" >> /etc/crontab
-chmod +x /etc/naiveproxy.sh 
-ln -sf /etc/naiveproxy.sh /usr/bin/na
+chmod +x /etc/naive/naiveproxy.sh  
+ln -sf /etc/naive/naiveproxy.sh  /usr/bin/na
 cp -f /etc/caddy/Caddyfile /etc/caddy/reCaddyfile >/dev/null 2>&1
 if [[ ! $vi =~ lxc|openvz ]]; then
 sysctl -w net.core.rmem_max=8000000
