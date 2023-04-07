@@ -15,8 +15,8 @@ white(){ echo -e "\033[37m$1\033[0m";}
 #1 新机器更新一下
 updatevps(){
     apt update && apt upgrade
-    read -p "要不要顺便装一下docker [Y|n]:" docker
-    if [[ "${docker}"=~'n|N' ]]; then
+    read -p "要不要顺便装一下docker:[Y|n]:" docker
+    if [[ "${docker}"=='n|N' ]]; then
         true
     else
         apt install docker && apt install docker-compose
