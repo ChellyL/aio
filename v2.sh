@@ -1388,25 +1388,11 @@ checkPort() {
     fi
 }
 
-# 自定义证书
-diySSL(){
-    read -p "\n是否使用自己的证书[y/N]：" diy
-    if [[ "${diy}" == "y" ]]; then
-      read -p "请输入已放置好的公钥文件crt的路径（如 /etc/acme/cert.crt）：" cerroad
-      echoContent yellow "公钥文件crt的路径：$cerroad "
-      read -p "请输入已放置好的密钥文件key的路径（如 /etc/acme/private.key）：" keyroad
-      echoContent yellow "密钥文件key的路径：$keyroad "
-      mv $cerroad /etc/v2ray-agent/tls/${btDomain}.crt
-      mv $keyroad /etc/v2ray-agent/tls/${btDomain}.key
-     else 
-      true
-    fi
-}
-
 # 安装TLS
 installTLS() {
     echoContent skyBlue "\n进度  $1/${totalProgress} : 申请TLS证书\n"
     local tlsDomain=${domain}
+
     # 安装tls
     if [[ -f "/etc/v2ray-agent/tls/${tlsDomain}.crt" && -f "/etc/v2ray-agent/tls/${tlsDomain}.key" && -n $(cat "/etc/v2ray-agent/tls/${tlsDomain}.crt") ]] || [[ -d "$HOME/.acme.sh/${tlsDomain}_ecc" && -f "$HOME/.acme.sh/${tlsDomain}_ecc/${tlsDomain}.key" && -f "$HOME/.acme.sh/${tlsDomain}_ecc/${tlsDomain}.cer" ]]; then
         echoContent green " ---> 检测到证书"
@@ -3366,40 +3352,36 @@ EOF
 }
 # 初始化Xray Reality配置
 # 自定义CDN IP
-customCDNIP() { 
+customCDNIP() {
+    echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
+    echoContent red "\n=============================================================="
+    echoContent yellow "# 注意事项"
+    echoContent yellow "\n教程地址:"
+    echoContent skyBlue "https://www.v2ray-agent.com/archives/cloudflarezi-xuan-ip"
+    echoContent red "\n如对Cloudflare优化不了解，请不要使用"
+    echoContent yellow "\n 1.CNAME www.digitalocean.com"
+    echoContent yellow " 2.CNAME who.int"
+    echoContent yellow " 3.CNAME blog.hostmonit.com"
 
-  add=$domain 
+    echoContent skyBlue "----------------------------"
+    read -r -p "请选择[回车不使用]:" selectCloudflareType
+    case ${selectCloudflareType} in
+    1)
+        add="www.digitalocean.com"
+        ;;
+    2)
+        add="who.int"
+        ;;
+    3)
+        add="blog.hostmonit.com"
+        ;;
+    *)
+        add="${domain}"
+        echoContent yellow "\n ---> 不使用"
+        ;;
+    esac
 }
-#     case ${selectCloudflareType} in 
-#     echoContent skyBlue "\n进度 $1/${totalProgress} : 添加cloudflare自选CNAME"
-#     echoContent red "\n=============================================================="
-#     echoContent yellow "# 注意事项"
-#     echoContent yellow "\n教程地址:"
-#     echoContent skyBlue "https://github.com/mack-a/v2ray-agent/blob/master/documents/optimize_V2Ray.md"
-#     echoContent red "\n如对Cloudflare优化不了解，请不要使用"
-#     echoContent yellow "\n 1.CNAME www.digitalocean.com"
-#     echoContent yellow " 2.CNAME who.int"
-#     echoContent yellow " 3.CNAME blog.hostmonit.com"
-
-#     echoContent skyBlue "----------------------------"
-#     read -r -p "请选择[回车不使用]:" selectCloudflareType
-#     case ${selectCloudflareType} in
-#     1)
-#         add="www.digitalocean.com"
-#         ;;
-#     2)
-#         add="who.int"
-#         ;;
-#     3)
-#         add="blog.hostmonit.com"
-#         ;;
-#     *)
-#         add="${domain}"
-#         echoContent yellow "\n ---> 不使用"
-#         ;;
-#     esac
 # 通用
-
 defaultBase64Code() {
     local type=$1
     local email=$2
@@ -5504,17 +5486,15 @@ EOF
 # v2ray-core个性化安装
 customV2RayInstall() {
     echoContent skyBlue "\n========================个性化安装============================"
-    echoContent yellow "默认安装："
-    echoContent yellow "VLESS前置"
-    #echoContent yellow "0.VLESS+TLS_Vision+TCP"
-    #echoContent yellow "1.VLESS+TLS+WS[CDN]"
-    #echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-    echoContent yellow "VMess+TLS+WS[CDN]"
-    echoContent yellow "Trojan+TLS"
-    #echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
-    #read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
+    echoContent yellow "VLESS前置，默认安装0，如果只需要安装0，则只选择0即可"
+    echoContent yellow "0.VLESS+TLS_Vision+TCP"
+    echoContent yellow "1.VLESS+TLS+WS[CDN]"
+    echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
+    echoContent yellow "3.VMess+TLS+WS[CDN]"
+    echoContent yellow "4.Trojan+TLS"
+    echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
+    read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
     echoContent skyBlue "--------------------------------------------------------------"
-    selectCustomInstallType="34"
     if [[ -z ${selectCustomInstallType} ]]; then
         selectCustomInstallType=0
     fi
@@ -5524,7 +5504,6 @@ customV2RayInstall() {
         installTools 1
         # 申请tls
         initTLSNginxConfig 2
-        diySSL
         installTLS 3
         handleNginx stop
         # 随机path
@@ -5555,18 +5534,19 @@ customV2RayInstall() {
 
 # Xray-core个性化安装
 customXrayInstall() {
-    echoContent skyBlue "\n========================个性化安装============================"
-    echoContent yellow "VLESS前置，默认安装0，如果只需要安装0，则只选择0即可"
-    echoContent yellow "0.VLESS+TLS_Vision+TCP[推荐]"
-    echoContent yellow "1.VLESS+TLS+WS[CDN]"
-    echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-    echoContent yellow "3.VMess+TLS+WS[CDN]"
-    echoContent yellow "4.Trojan+TLS"
-    echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
-    echoContent yellow "7.VLESS+Reality+uTLS+Vision[推荐]"
+    echoContent skyBlue "\n========================主动安装============================"
+    echoContent yellow "VLESS前置，将安装以下协议："
+    echoContent yellow "VLESS+TLS_Vision+TCP"
+    # echoContent yellow "1.VLESS+TLS+WS[CDN]"
+    # echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
+    echoContent yellow "VMess+TLS+WS[CDN]"
+    echoContent yellow "Trojan+TLS"
+    # echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
+    # echoContent yellow "7.VLESS+Reality+uTLS+Vision[推荐]"
     #    echoContent yellow "8.VLESS+Reality+gRPC"
-    read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
+    # read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
     echoContent skyBlue "--------------------------------------------------------------"
+    selectCustomInstallType=34
     if [[ -z ${selectCustomInstallType} ]]; then
         echoContent red " ---> 不可为空"
         customXrayInstall
@@ -5589,7 +5569,6 @@ customXrayInstall() {
             handleXray stop
             handleNginx start
             checkIP
-            diySSL
             installTLS 3
         fi
 
@@ -5632,13 +5611,16 @@ customXrayInstall() {
     fi
 }
 
+# 选择核心安装---v2ray-core、xray-core
 selectCoreInstall() {
-    echoContent skyBlue "\n功能 1/${totalProgress} : 选择核心安装"
+    echoContent skyBlue "\n功能 1/${totalProgress} : 安装核心"
     echoContent red "\n=============================================================="
-    echoContent yellow "安装v2ray-core"
+    echoContent yellow "安装 Xray-core"
+    # echoContent yellow "2.v2ray-core"
     echoContent red "=============================================================="
-    selectCoreType="2"
-    selectInstallType="2"
+    # read -r -p "请选择:" selectCoreType
+    selectCoreType="1"
+    selectInstallType='2'
     case ${selectCoreType} in
     1)
         if [[ "${selectInstallType}" == "2" ]]; then
@@ -5683,7 +5665,6 @@ v2rayCoreInstall() {
     handleNginx start
     checkIP
 
-    diySSL
     installTLS 4
     handleNginx stop
     #	initNginxConfig 5
@@ -5722,7 +5703,6 @@ xrayCoreInstall() {
         handleXray stop
         handleNginx start
         checkIP
-        diySSL
         installTLS 4
     fi
 
@@ -6055,11 +6035,14 @@ manageReality() {
     if [[ -n "${realityStatus}" ]]; then
         echoContent yellow "1.重新安装"
         echoContent yellow "2.卸载"
+        read -r -p "请选择:" installRealityStatus
     else
-        echoContent yellow "1.安装"
+        # echoContent yellow "1.安装"
+        echoContent yellow "安装中……"
+        installRealityStatus=1
     fi
     echoContent red "=============================================================="
-    read -r -p "请选择:" installRealityStatus
+    # read -r -p "请选择:" installRealityStatus
 
     if [[ "${installRealityStatus}" == "1" ]]; then
         selectCustomInstallType="7"
@@ -6124,20 +6107,15 @@ hysteriaVersionManageMenu() {
         handleHysteria start
     fi
 }
-
 # 主菜单
 menu() {
     cd "$HOME" || exit
     echoContent red "\n=============================================================="
     echoContent green "作者：mack-a"
-    echoContent green "当前版本：v2.7.13"
+    echoContent green "当前版本：v2.8.0"
     echoContent green "Github：https://github.com/mack-a/v2ray-agent"
     echoContent green "描述：八合一共存脚本\c"
     showInstallStatus
-    # echoContent red "\n=============================================================="
-    # echoContent red "                        推广区                      "
-    # echoContent green "推广请联系TG：@mackaff\n"
-    # echoContent green "AFF捐赠：https://github.com/mack-a/v2ray-agent/blob/master/documents/donation_aff.md\n"
     echoContent red "\n=============================================================="
     if [[ -n "${coreInstallType}" ]]; then
         echoContent yellow "1.重新安装"
@@ -6145,7 +6123,7 @@ menu() {
         echoContent yellow "1.安装"
     fi
 
-    #echoContent yellow "2.任意组合安装"
+    # echoContent yellow "2.任意组合安装"
     # if echo ${currentInstallProtocolType} | grep -q trojan; then
     #     echoContent yellow "3.切换VLESS[XTLS]"
     # elif echo ${currentInstallProtocolType} | grep -q 0; then
@@ -6153,23 +6131,24 @@ menu() {
     # fi
 
     echoContent yellow "2.Hysteria管理"
+    echoContent yellow "3.REALITY管理"
     echoContent skyBlue "-------------------------工具管理-----------------------------"
-    echoContent yellow "3.账号管理"
-    echoContent yellow "4.更换伪装站"
-    echoContent yellow "5.更新证书"
-    #echoContent yellow "8.更换CDN节点"
-    echoContent yellow "6.IPv6分流"
-    # echoContent yellow "10.WARP分流"
-    # echoContent yellow "11.流媒体工具"
-    # echoContent yellow "12.添加新端口"
-    # echoContent yellow "13.BT下载管理"
-    # echoContent yellow "14.切换alpn"
-    # echoContent yellow "15.域名黑名单"
+    echoContent yellow "4.账号管理"
+    echoContent yellow "5.更换伪装站"
+    echoContent yellow "6.更新证书"
+    # echoContent yellow "9.更换CDN节点"
+    echoContent yellow "7.IPv6分流"
+    # echoContent yellow "11.WARP分流"
+    # echoContent yellow "12.流媒体工具"
+    # echoContent yellow "13.添加新端口"
+    # echoContent yellow "14.BT下载管理"
+    # echoContent yellow "15.切换alpn"
+    # echoContent yellow "16.域名黑名单"
     echoContent skyBlue "-------------------------版本管理-----------------------------"
-    echoContent yellow "7.core管理"
-    # echoContent yellow "17.更新脚本"
-    echoContent yellow "8.安装BBR、DD脚本"
-    echoContent skyBlue "-------------------------脚本管理-----------------------------"
+    echoContent yellow "8.core管理"
+    # echoContent yellow "18.更新脚本"
+    # echoContent yellow "19.安装BBR、DD脚本"
+    # echoContent skyBlue "-------------------------脚本管理-----------------------------"
     echoContent yellow "9.查看日志"
     echoContent yellow "10.卸载脚本"
     echoContent red "=============================================================="
@@ -6190,47 +6169,50 @@ menu() {
         manageHysteria
         ;;
     3)
-        manageAccount 1
+        manageReality 1
         ;;
     4)
-        updateNginxBlog 1
+        manageAccount 1
         ;;
     5)
+        updateNginxBlog 1
+        ;;
+    6)
         renewalTLS 1
         ;;
-    # 8)
+    # 9)
     #     updateV2RayCDN 1
-        # ;;
-    6)
-        ipv6Routing 1
-        ;;
-    # 10)
-    #     warpRouting 1
-    #     ;;
-    # 11)
-    #     streamingToolbox 1
-    #     ;;
-    # 12)
-    #     addCorePort 1
-    #     ;;
-    # 13)
-    #     btTools 1
-    #     ;;
-    # 14)
-    #     switchAlpn 1
-    #     ;;
-    # 15)
-    #     blacklist 1
     #     ;;
     7)
-        coreVersionManageMenu 1
+        ipv6Routing 1
         ;;
-    # 17)
-    #     updateV2RayAgent 1
+    # 11)
+    #     warpRouting 1
+    #     ;;
+    # 12)
+    #     streamingToolbox 1
+    #     ;;
+    # 13)
+    #     addCorePort 1
+    #     ;;
+    # 14)
+    #     btTools 1
+    #     ;;
+    # 15)
+    #     switchAlpn 1
+    #     ;;
+    # 16)
+    #     blacklist 1
     #     ;;
     8)
-        bbrInstall
+        coreVersionManageMenu 1
         ;;
+    # 18)
+    #     updateV2RayAgent 1
+    #     ;;
+    # 19)
+    #     bbrInstall
+    #     ;;
     9)
         checkLog 1
         ;;
