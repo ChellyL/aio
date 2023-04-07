@@ -15,7 +15,7 @@ white(){ echo -e "\033[37m$1\033[0m";}
 #1 新机器更新一下
 updatevps(){
     apt update && apt upgrade
-    read -p "要不要顺便装一下docker:[Y|n]:" docker
+    read -p "要不要顺便装一下docker?[Y|n]:" docker
     if [[ "${docker}"=='n|N' ]]; then
         true
     else
@@ -62,11 +62,10 @@ acme(){
 #9 改root登录
 login(){
     echo "--------------------------------------------------------------"
-    echo "使用root登录，按提示操作"
+    echo "输入以下代码："
     echo ""
     echo "sudo -i        # 转为root权限 "
     echo "sudo passwd +你的登录密码   # 设置root用户密码"
-    echo "输入一下两行代码："
     echo "sudo sed -i 's/^.\*PermitRootLogin.\*/PermitRootLogin yes/g' /etc/ssh/sshd\_config;"
     echo "sudo sed -i 's/^.\*PasswordAuthentication.\*/PasswordAuthentication yes/g' /etc/ssh/sshd\_config;"
     echo "sudo service sshd restart     # 重启ssh"
