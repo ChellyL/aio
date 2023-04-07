@@ -5490,15 +5490,17 @@ EOF
 # v2ray-core个性化安装
 customV2RayInstall() {
     echoContent skyBlue "\n========================个性化安装============================"
-    echoContent yellow "VLESS前置，默认安装0，如果只需要安装0，则只选择0即可"
-    echoContent yellow "0.VLESS+TLS_Vision+TCP"
-    echoContent yellow "1.VLESS+TLS+WS[CDN]"
-    echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
-    echoContent yellow "3.VMess+TLS+WS[CDN]"
-    echoContent yellow "4.Trojan+TLS"
-    echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
-    read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
+    echoContent yellow "默认安装："
+    echoContent yellow "VLESS前置"
+    #echoContent yellow "0.VLESS+TLS_Vision+TCP"
+    #echoContent yellow "1.VLESS+TLS+WS[CDN]"
+    #echoContent yellow "2.Trojan+TLS+gRPC[CDN]"
+    echoContent yellow "VMess+TLS+WS[CDN]"
+    echoContent yellow "Trojan+TLS"
+    #echoContent yellow "5.VLESS+TLS+gRPC[CDN]"
+    #read -r -p "请选择[多选]，[例如:123]:" selectCustomInstallType
     echoContent skyBlue "--------------------------------------------------------------"
+    selectCustomInstallType="34"
     if [[ -z ${selectCustomInstallType} ]]; then
         selectCustomInstallType=0
     fi
