@@ -123,13 +123,13 @@ red "0. 退出"
 red "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书所在："
 echo ""
-echo "hysteria：/etc/hihy/cert"
+echo "hysteria：/root/.local/share/certmagic/certificates/acme-v02.api.letsencrypt.org-directory/"
 echo "naivepproxy：/root/ygkkkca"
 echo "mack-a：/etc/v2ray-agent/tls"
 echo "jinway：/nginxweb/cert"
 echo "acme：/root/"
 echo "修改：/etc/acme/"
-
+echo ""
 read -e -p " 请输入数字 [0-35]:" num
 case "$num" in
 	1)
