@@ -76,7 +76,7 @@ install_acme(){
 
     #FILEPATH=/etc/acme/
     if [ -d /etc/acme/ ]; then
-        continue
+        true
     else
         mkdir /etc/acme/
     fi
@@ -144,7 +144,7 @@ acme_standalone(){
     fi
     
     if [ -d /etc/acme/ ]; then
-        continue
+        true
     else
         mkdir /etc/acme/
     fi
@@ -214,12 +214,12 @@ acme_cfapiTLD(){
     ipv6=$(curl -s6m8 ip.p3terx.com -k | sed -n 1p)
 
     if [ -d /etc/acme/ ]; then
-        continue
+        true
     else
         mkdir /etc/acme/
     fi
     echo " 证书文件将放在/etc/acme/路径中 "
-    
+
     read -rp "请输入需要申请证书的域名: " domain
     if [[ $(echo ${domain:0-2}) =~ cf|ga|gq|ml|tk ]]; then
         red "检测为Freenom免费域名, 由于CloudFlare API不支持, 故无法使用本模式申请!"
