@@ -284,9 +284,9 @@ blue "已确认密码：${pswd}\n"
 }
 
 insweb(){
-readp "设置naiveproxy伪装网址，注意：不要带https（不懂的话，直接回车跳过，默认为 甬哥博客地址：ygkkk.blogspot.com ）：" web
+readp "设置naiveproxy伪装网址，注意：不要带https（不懂的话，直接回车跳过，默认为豆瓣电影 ）：" web
 if [[ -z ${web} ]]; then
-naweb=ygkkk.blogspot.com
+naweb=movie.douban.com
 else
 naweb=$web
 fi
@@ -577,7 +577,8 @@ fi
 red "======================================================================================"
 url="naive+https://${user}:${pswd}@${ym}:$port?padding=true#Naive" #-ygkkk"
 echo ${url} > /root/naive/URL.txt
-green "\nnaiveproxy代理服务安装完成，生成脚本的快捷方式为 na" && sleep 3
+# green "\nnaiveproxy代理服务安装完成，生成脚本的快捷方式为 na" && sleep 3
+green "\nnaiveproxy代理服务安装完成" && sleep 3
 blue "\nv2rayn客户端配置文件v2rayn.json保存到 /root/naive/v2rayn.json\n"
 yellow "$(cat /root/naive/v2rayn.json)\n"
 blue "分享链接保存到 /root/naive/URL.txt" && sleep 3
