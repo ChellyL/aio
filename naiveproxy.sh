@@ -504,8 +504,8 @@ if [[ -z $(systemctl status caddy 2>/dev/null | grep -w active) && ! -f '/etc/ca
 red "未正常安装naiveproxy" && exit
 fi
 wget -N https://gitlab.com/rwkgyg/naiveproxy-yg/raw/main/naiveproxy.sh
-chmod +x /root/naiveproxy.sh 
-ln -sf /root/naiveproxy.sh /usr/bin/na
+# chmod +x /root/naiveproxy.sh 
+# ln -sf /root/naiveproxy.sh /usr/bin/na
 green "naiveproxy-yg安装脚本升级成功" #&& na
 }
 
@@ -564,8 +564,8 @@ if [[ -n $(systemctl status caddy 2>/dev/null | grep -w active) && -f '/etc/cadd
 green "naiveproxy服务启动成功"
 sed -i '/systemctl restart caddy/d' /etc/crontab
 echo "0 4 * * * systemctl restart caddy >/dev/null 2>&1" >> /etc/crontab
-chmod +x /root/naiveproxy.sh 
-ln -sf /root/naiveproxy.sh /usr/bin/na
+# chmod +x /root/naiveproxy.sh 
+# ln -sf /root/naiveproxy.sh /usr/bin/na
 cp -f /etc/caddy/Caddyfile /etc/caddy/reCaddyfile >/dev/null 2>&1
 if [[ ! $vi =~ lxc|openvz ]]; then
 sysctl -w net.core.rmem_max=8000000
