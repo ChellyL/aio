@@ -1388,11 +1388,25 @@ checkPort() {
     fi
 }
 
+# 自定义证书
+diySSL(){
+    read -p "\n是否使用自己的证书[y/N]：" diy
+    if [[ "${diy}" == "y" ]]; then
+      read -p "请输入已放置好的公钥文件crt的路径（如 /etc/acme/cert.crt）：" cerroad
+      echoContent yellow "公钥文件crt的路径：$cerroad "
+      read -p "请输入已放置好的密钥文件key的路径（如 /etc/acme/private.key）：" keyroad
+      echoContent yellow "密钥文件key的路径：$keyroad "
+      mv $cerroad /etc/v2ray-agent/tls/${btDomain}.crt
+      mv $keyroad /etc/v2ray-agent/tls/${btDomain}.key
+     else 
+      true
+    fi
+}
+
 # 安装TLS
 installTLS() {
     echoContent skyBlue "\n进度  $1/${totalProgress} : 申请TLS证书\n"
     local tlsDomain=${domain}
-
     # 安装tls
     if [[ -f "/etc/v2ray-agent/tls/${tlsDomain}.crt" && -f "/etc/v2ray-agent/tls/${tlsDomain}.key" && -n $(cat "/etc/v2ray-agent/tls/${tlsDomain}.crt") ]] || [[ -d "$HOME/.acme.sh/${tlsDomain}_ecc" && -f "$HOME/.acme.sh/${tlsDomain}_ecc/${tlsDomain}.key" && -f "$HOME/.acme.sh/${tlsDomain}_ecc/${tlsDomain}.cer" ]]; then
         echoContent green " ---> 检测到证书"
@@ -5510,6 +5524,7 @@ customV2RayInstall() {
         installTools 1
         # 申请tls
         initTLSNginxConfig 2
+        diySSL
         installTLS 3
         handleNginx stop
         # 随机path
@@ -5574,6 +5589,7 @@ customXrayInstall() {
             handleXray stop
             handleNginx start
             checkIP
+            diySSL
             installTLS 3
         fi
 
@@ -5667,6 +5683,7 @@ v2rayCoreInstall() {
     handleNginx start
     checkIP
 
+    diySSL
     installTLS 4
     handleNginx stop
     #	initNginxConfig 5
@@ -5705,6 +5722,7 @@ xrayCoreInstall() {
         handleXray stop
         handleNginx start
         checkIP
+        diySSL
         installTLS 4
     fi
 
