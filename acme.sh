@@ -73,7 +73,7 @@ install_base(){
 }
 
 install_acme(){
-    mkdir /ect/acme
+    mkdir /etc/acme/
     install_base
     read -rp "请输入注册邮箱 (例: admin@gmail.com, 或留空自动生成一个gmail邮箱): " acmeEmail
     if [[ -z $acmeEmail ]]; then
@@ -136,7 +136,7 @@ acme_standalone(){
         systemctl stop warp-go >/dev/null 2>&1
     fi
     
-    mkdir /ect/acme
+    mkdir /etc/acme/
     ipv4=$(curl -s4m8 ip.p3terx.com -k | sed -n 1p)
     ipv6=$(curl -s6m8 ip.p3terx.com -k | sed -n 1p)
     
@@ -199,7 +199,7 @@ acme_cfapiTLD(){
     [[ -z $(~/.acme.sh/acme.sh -v 2>/dev/null) ]] && red "未安装Acme.sh, 无法执行操作" && exit 1
     ipv4=$(curl -s4m8 ip.p3terx.com -k | sed -n 1p)
     ipv6=$(curl -s6m8 ip.p3terx.com -k | sed -n 1p)
-    mkdir /ect/acme
+    mkdir /etc/acme/
     read -rp "请输入需要申请证书的域名: " domain
     if [[ $(echo ${domain:0-2}) =~ cf|ga|gq|ml|tk ]]; then
         red "检测为Freenom免费域名, 由于CloudFlare API不支持, 故无法使用本模式申请!"
@@ -224,7 +224,7 @@ acme_cfapiNTLD(){
     [[ -z $(~/.acme.sh/acme.sh -v 2>/dev/null) ]] && red "未安装acme.sh, 无法执行操作" && exit 1
     ipv4=$(curl -s4m8 ip.p3terx.com -k | sed -n 1p)
     ipv6=$(curl -s6m8 ip.p3terx.com -k | sed -n 1p)
-    mkdir /ect/acme
+    mkdir /etc/acme/
     read -rp "请输入需要申请证书的泛域名 (输入格式：example.com): " domain
     [[ -z $domain ]] && red "未输入域名，无法执行操作！" && exit 1
     if [[ $(echo ${domain:0-2}) =~ cf|ga|gq|ml|tk ]]; then
