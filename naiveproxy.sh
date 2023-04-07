@@ -476,7 +476,7 @@ sussnaiveproxy
 }
 
 acme(){
-bash <(curl -L -s https://gitlab.com/rwkgyg/acme-script/raw/main/acme.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/ChellyL/aio/main/acme.sh)
 }
 cfwarp(){
 wget -N --no-check-certificate https://gitlab.com/rwkgyg/cfwarp/raw/main/CFwarp.sh && bash CFwarp.sh
@@ -618,7 +618,7 @@ green "  4. 关闭、开启、重启naiveproxy"
 green "  6. 更新naiveproxy内核版本"
 white "----------------------------------------------------------------------------------"
 green "  7. 显示当前naiveproxy分享链接、V2rayN配置文件、二维码"
-# green "  8. ACME证书管理菜单"
+green "  8. ACME证书管理菜单"
 # green "  9. 安装WARP（可选）"
 # green " 10. 安装BBR+FQ加速（可选）"
 green " 11. 查看naiveproxy运行日志"
