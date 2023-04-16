@@ -80,7 +80,8 @@ Tg_go(){
 
 #11 安装歇斯底里
 hysteria(){
-    bash <(curl -fsSL https://git.io/hysteria.sh)
+    #bash <(curl -fsSL https://git.io/hysteria.sh)
+    bash <(curl -fsSL https://raw.githubusercontent.com/emptysuns/Hi_Hysteria/main/server/install.sh)
 }
 
 # #11 安装naiveproxy
