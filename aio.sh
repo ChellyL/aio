@@ -107,7 +107,8 @@ V2Ray_ma(){
 
 #13 jinwyp版一键
 V2Ray_jin(){ 
-    bash <(curl -Lso- https://git.io/oneclick)
+    # bash <(curl -Lso- https://git.io/oneclick)
+    bash <(curl -Lso- https://raw.githubusercontent.com/jinwyp/one_click_script/master/trojan_v2ray_install.sh)
     }
 
 #14 TrojanPanel 支持Xray/Trojan-Go/Hysteria/NaiveProxy的多用户Web管理面板
