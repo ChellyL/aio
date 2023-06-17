@@ -56,10 +56,10 @@ login(){
     echo "输入以下代码："
     echo ""
     echo "sudo -i        # 转为root权限 "
-    echo "sudo passwd +你的登录密码   # 设置root用户密码"
-    echo "sudo sed -i 's/^.\*PermitRootLogin.\*/PermitRootLogin yes/g' /etc/ssh/sshd\_config;"
-    echo "sudo sed -i 's/^.\*PasswordAuthentication.\*/PasswordAuthentication yes/g' /etc/ssh/sshd\_config;"
-    echo "sudo service sshd restart     # 重启ssh"
+    echo "sudo passwd root   # 设置root用户密码"
+    echo "sudo vim /etc/ssh/sshd_config   # 使用vim修改sshd_config文件"
+    echo "PermitRootLogin yes   # 添加一行 保持"
+    echo "sudo service ssh restart     # 重启ssh"
     echo "--------------------------------------------------------------"
 }
 
