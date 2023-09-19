@@ -133,7 +133,7 @@ ss_show(){
 }
 
 #17 SS 显示帮助
-ss_show(){
+ss_help(){
       # wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
       # chmod +x ss-plugins.sh
       ./ss-plugins.sh help
