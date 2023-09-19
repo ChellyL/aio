@@ -11,7 +11,8 @@ wget https://raw.githubusercontent.com/ChellyL/aio/main/aio.sh && bash aio.sh
 
 via：
 
-- https://github.com/ylx2016/Linux-NetSpeed 
+- https://github.com/ylx2016/Linux-NetSpeed
+- https://github.com/loyess/Shell
 - https://github.com/ChellyL/ipv4-6-switch
 - https://github.com/lmc999/RegionRestrictionCheck
 - https://github.com/fscarmen/warp
