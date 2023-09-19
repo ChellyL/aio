@@ -221,7 +221,8 @@ case "$num" in
     ;;
     17)
     ss_help
-    # ;;
+    ;;
+    
     0)
     exit
     ;;
