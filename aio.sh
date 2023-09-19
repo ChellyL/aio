@@ -122,6 +122,22 @@ TrojanPanel_alone(){
 
 }
 
+#16 SS 显示配置
+ss_show(){
+      wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      chmod +x ss-plugins.sh
+      ./ss-plugins.sh show
+
+}
+
+#17 SS 显示帮助
+ss_show(){
+      wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      chmod +x ss-plugins.sh
+      ./ss-plugins.sh help
+
+}
+
 echo "+-------------------------------------------------------------+"
 echo "|                         自用小鸡脚本                        |"                                      
 echo "+-------------------------------------------------------------+"
@@ -141,8 +157,8 @@ green "12. mack-a版 v2ray"
 green "13. jinwyp版一键  "
 green "14. TrojanPanel 联机"
 green "15. TrojanPanel 单机"
-#green "11. naiveproxy-简化"
-#green "12. v2ray-简化"
+green "16. SS查询配置"
+green "17. SS显示帮助"
 red " 0. 退出"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
@@ -200,11 +216,11 @@ case "$num" in
     15)
     TrojanPanel_alone
     ;;
-    # 16)
-    # naive_yg
-    # ;;
-    # 17)
-    # V2Ray_ma
+    16)
+    ss_show
+    ;;
+    17)
+    ss_help
     # ;;
     0)
     exit
