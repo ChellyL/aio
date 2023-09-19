@@ -70,7 +70,9 @@ acme(){
 
 #8 安装SS
 ss(){
-    bash <(curl -s -L https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh)
+    wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+    chmod +x ss-plugins.sh
+    ./ss-plugins.sh
 }
 
 #9 安装Tg专用代理（Go版）
@@ -124,16 +126,16 @@ TrojanPanel_alone(){
 
 #16 SS 显示配置
 ss_show(){
-      wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
-      chmod +x ss-plugins.sh
+      # wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      # chmod +x ss-plugins.sh
       ./ss-plugins.sh show
 
 }
 
 #17 SS 显示帮助
 ss_show(){
-      wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
-      chmod +x ss-plugins.sh
+      # wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      # chmod +x ss-plugins.sh
       ./ss-plugins.sh help
 
 }
@@ -222,11 +224,10 @@ case "$num" in
     17)
     ss_help
     ;;
-    ;;
     0)
     exit
     ;;
     *)
-    echo "请输入正确数字 [0-15]"
+    echo "请输入正确数字 [0-17]"
     ;;
  esac
