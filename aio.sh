@@ -54,13 +54,12 @@ warp(){
 #7 改root登录
 login(){
     echo "--------------------------------------------------------------"
-    echo "输入以下代码："
+    echo "需要使用以下代码自行设置密码："
     echo ""
     echo "sudo -i        # 转为root权限 "
     echo "sudo passwd root   # 设置root用户密码"
-    echo "sudo vim /etc/ssh/sshd_config   # 使用vim修改sshd_config文件"
-    echo "PermitRootLogin yes   # 添加一行 保持"
-    echo "sudo service ssh restart     # 重启ssh"
+    echo "然后使用脚本"
+    echo "wget -qO- https://raw.githubusercontent.com/vsp6688/GCP-SSH-ROOT-OPEN/master/gcp_root_ssh.sh | bash"
     echo "--------------------------------------------------------------"
 }
 
@@ -81,6 +80,19 @@ Tg_go(){
     bash <(curl -s -L wget https://raw.githubusercontent.com/ChellyL/Docker-mtproto/main/go_mtg.sh)
 }
 
+#10 检测回程
+BestTrace(){
+    wget -qO- https://raw.githubusercontent.com/hongwenjun/vps_setup/master/autoBestTrace.sh | bash
+}
+
+# 11 DD脚本
+DD(){
+    echo "--------------------------------------------------------------"
+    echo "使用以下代码自行设置"
+    echo ""
+    echo "wget https://raw.githubusercontent.com/hongwenjun/vps_setup/master/auto.sh && bash auto.sh -d 11 -v 64 -a -p passwd"
+    echo "-d 11 可以改成其他系统版本，如 -u（buntu） 22 ，-p 可改成你自己的密码"
+}
 #11 安装歇斯底里
 hysteria(){
     #bash <(curl -fsSL https://git.io/hysteria.sh)
@@ -153,15 +165,17 @@ green "06. warp设置"
 green "07. 使用root登录[适合甲骨文、AZ等]"
 green "08. acme证书管理"
 green '09. Tg代理mtg'
+green "10. BestTrace去程回程检测"
+green "11. 萌咖DD脚本"
 white "---------------------------------------------------------------"
-green "10. SS"
-green "11. Hysteria"
-green "12. mack-a版 v2ray"
-green "13. jinwyp版一键  "
-green "14. TrojanPanel 联机"
-green "15. TrojanPanel 单机"
-green "16. SS查询配置"
-green "17. SS显示帮助"
+green "12. SS"
+green "13. Hysteria"
+green "14. mack-a版 v2ray"
+green "15. jinwyp版一键  "
+green "16. TrojanPanel 联机"
+green "17. TrojanPanel 单机"
+green "18. SS查询配置"
+green "19. SS显示帮助"
 red " 0. 退出"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
@@ -202,27 +216,33 @@ case "$num" in
     Tg_go
     ;;
     10)
-    ss
+    BestTrace
     ;;
     11)
-    hysteria
+    DD
     ;;
     12)
-    V2Ray_ma
+    ss
     ;;
     13)
-    V2Ray_jin
+    hysteria
     ;;
     14)
-    TrojanPanel
+    V2Ray_ma
     ;;
     15)
-    TrojanPanel_alone
+    V2Ray_jin
     ;;
     16)
-    ss_show
+    TrojanPanel
     ;;
     17)
+    TrojanPanel_alone
+    ;;
+    18)
+    ss_show
+    ;;
+    19)
     ss_help
     ;;
     0)
