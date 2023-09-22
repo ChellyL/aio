@@ -22,3 +22,5 @@ via：
 - https://github.com/mack-a/v2ray-agent
 - https://github.com/jinwyp/one_click_script
 - https://trojanpanel.github.io
+- https://github.com/vsp6688/GCP-SSH-ROOT-OPEN
+- https://github.com/hongwenjun/vps_setup/
