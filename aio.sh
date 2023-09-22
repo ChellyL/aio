@@ -25,6 +25,7 @@ updatevps(){
 
 #2 更改时区
 changetz(){
+    apt install sudo
     sudo timedatectl set-timezone Asia/Shanghai
     echo "已修改时区为CST +8"
 }
