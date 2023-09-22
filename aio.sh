@@ -47,8 +47,9 @@ media(){
 
 #6 warp设置
 warp(){
-    #bash <(curl -fsSL https://cdn.jsdelivr.net/gh/missuo/CloudflareWarp/warp.sh)
-    bash <(curl https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh)
+    # bash <(curl -fsSL https://cdn.jsdelivr.net/gh/missuo/CloudflareWarp/warp.sh)
+    # bash <(curl https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh)
+    wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh h
 }
 
 #7 改root登录
