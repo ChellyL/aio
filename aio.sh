@@ -140,16 +140,16 @@ TrojanPanel_alone(){
 
 #16 SS 显示配置
 ss_show(){
-      # wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
-      # chmod +x ss-plugins.sh
+      wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      chmod +x ss-plugins.sh
       ./ss-plugins.sh show
 
 }
 
 #17 SS 显示帮助
 ss_help(){
-      # wget https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
-      # chmod +x ss-plugins.sh
+      wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
+      chmod +x ss-plugins.sh
       ./ss-plugins.sh help
 
 }
