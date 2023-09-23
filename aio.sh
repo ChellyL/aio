@@ -49,7 +49,7 @@ media(){
 warp(){
     # bash <(curl -fsSL https://cdn.jsdelivr.net/gh/missuo/CloudflareWarp/warp.sh)
     # bash <(curl https://raw.githubusercontent.com/fscarmen/warp/main/menu.sh)
-    wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh h
+    wget -N https://gitlab.com/fscarmen/warp/-/raw/main/menu.sh && bash menu.sh
 }
 
 #7 改root登录
