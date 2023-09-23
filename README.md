@@ -1,5 +1,10 @@
 # AllinOne
 
+准备
+```
+apt install sudo curl
+```
+----
 ```
 bash <(curl -s -L https://raw.githubusercontent.com/ChellyL/aio/main/aio.sh)
 ```
@@ -9,13 +14,13 @@ wget https://raw.githubusercontent.com/ChellyL/aio/main/aio.sh && bash aio.sh
 ```
 
 
-via：
+thx：
 
 - https://github.com/ylx2016/Linux-NetSpeed
 - https://github.com/loyess/Shell
 - https://github.com/ChellyL/ipv4-6-switch
 - https://github.com/lmc999/RegionRestrictionCheck
-- https://github.com/fscarmen/warp
+- https://gitlab.com/fscarmen/warp
 - https://github.com/Misaka-blog/acme-script
 - https://github.com/ChellyL/Docker-mtproto
 - https://github.com/emptysuns/Hi_Hysteria
