@@ -2,7 +2,7 @@
 
 准备
 ```
-apt install sudo curl
+apt install sudo curl wget
 ```
 ----
 ```
