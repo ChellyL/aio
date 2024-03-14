@@ -246,13 +246,13 @@ case "$num" in
     V2Ray_jin
     ;;
     16)
-    TrojanPanel
+    sing_box
     ;;
     17)
-    TrojanPanel_alone
+    TrojanPanel
     ;;
     18)
-    sing_box
+    TrojanPanel_alone
     ;;
     19)
     ss_show
