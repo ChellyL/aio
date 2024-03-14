@@ -138,7 +138,13 @@ TrojanPanel_alone(){
 
 }
 
-#16 SS 显示配置
+#16 sing-box
+sing_box(){
+      bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-box.sh)
+
+}
+
+#17 SS 显示配置
 ss_show(){
       wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
       chmod +x ss-plugins.sh
@@ -146,13 +152,16 @@ ss_show(){
 
 }
 
-#17 SS 显示帮助
+#18 SS 显示帮助
 ss_help(){
       wget -N --no-check-certificate -c -t3 -T60 -O ss-plugins.sh https://raw.githubusercontent.com/loyess/Shell/master/ss-plugins.sh
       chmod +x ss-plugins.sh
       ./ss-plugins.sh help
 
 }
+
+
+
 
 echo "+-------------------------------------------------------------+"
 echo "|                         自用小鸡脚本                        |"                                      
@@ -172,11 +181,12 @@ white "---------------------------------------------------------------"
 green "12. SS"
 green "13. Hysteria"
 green "14. mack-a版 v2ray"
-green "15. jinwyp版一键  "
-green "16. TrojanPanel 联机"
-green "17. TrojanPanel 单机"
-green "18. SS查询配置"
-green "19. SS显示帮助"
+green "15. jinwyp版一键"
+green "16. Sing-box for VPS"
+green "17. TrojanPanel 联机"
+green "18. TrojanPanel 单机"
+green "19. SS查询配置"
+green "20. SS显示帮助"
 red " 0. 退出"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 echo "证书路径："
@@ -241,9 +251,12 @@ case "$num" in
     TrojanPanel_alone
     ;;
     18)
-    ss_show
+    sing_box
     ;;
     19)
+    ss_show
+    ;;
+    20)
     ss_help
     ;;
     0)
