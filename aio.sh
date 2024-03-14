@@ -14,7 +14,8 @@ white(){ echo -e "\033[37m$1\033[0m";}
 
 #1 新机器更新一下
 updatevps(){
-    apt update && apt upgrade
+    apt update
+    apt upgrade
     read -p "顺便装一下docker?[Y|n]:" docker
     if [[ "${docker}" == 'n' || "${docker}" == 'N'  ]]; then
         true
