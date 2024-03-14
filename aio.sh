@@ -198,7 +198,7 @@ echo "jinway：/nginxweb/cert"
 echo "acme：/root/"
 echo "TrojanPanel: /tpdata/caddy/cert/"
 blue "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-read -p "请输入数字 [0-15]:" num
+read -p "请输入数字 [0-20]:" num
 case "$num" in
     1)
     updatevps
@@ -264,6 +264,6 @@ case "$num" in
     exit
     ;;
     *)
-    echo "请输入正确数字 [0-17]"
+    echo "请输入正确数字 [0-20]"
     ;;
  esac
