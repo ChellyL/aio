@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/ChellyL/aio/main/aio.sh && bash aio.sh
 ```
 
 
-thx：
+source：
 
 - https://github.com/ylx2016/Linux-NetSpeed
 - https://github.com/loyess/Shell
@@ -29,3 +29,4 @@ thx：
 - https://trojanpanel.github.io
 - https://github.com/vsp6688/GCP-SSH-ROOT-OPEN
 - https://github.com/hongwenjun/vps_setup/
+- https://github.com/fscarmen/sing-box
