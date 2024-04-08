@@ -59,9 +59,10 @@ login(){
     echo "需要使用以下代码自行设置密码："
     echo ""
     echo "sudo -i        # 转为root权限 "
-    echo "sudo passwd root   # 设置root用户密码"
-    echo "然后使用脚本"
-    echo "wget -qO- https://raw.githubusercontent.com/vsp6688/GCP-SSH-ROOT-OPEN/master/gcp_root_ssh.sh | bash"
+    echo "vi /etc/ssh/sshd_config   # 打开sshd_config"
+    echo "添加 PermitRootLogin yes"
+    echo "service sshd restart # 重启 ssh 服务以应用更改"
+    echo "passwd root # 修改 Root 用户的密码"
     echo "--------------------------------------------------------------"
 }
 
