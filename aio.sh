@@ -93,8 +93,9 @@ DD(){
     echo "--------------------------------------------------------------"
     echo "使用以下代码自行设置"
     echo ""
-    echo "wget https://raw.githubusercontent.com/hongwenjun/vps_setup/master/auto.sh && bash auto.sh -d 11 -v 64 -a -p passwd"
-    echo "-d 11 可以改成其他系统版本，如 -u（buntu） 22 ，-p 可改成你自己的密码"
+    echo "wget --no-check-certificate -qO InstallNET.sh 'https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh' && chmod a+x InstallNET.sh"
+    echo "bash InstallNET.sh -debian 12 -pwd '密码'[默认密码：LeitboGi0ro]"
+    echo "执行后reboot即可，可跳过Debian低内存模式"
 }
 #11 安装歇斯底里
 hysteria(){
