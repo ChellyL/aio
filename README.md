@@ -28,5 +28,5 @@ source：
 - https://github.com/jinwyp/one_click_script
 - https://trojanpanel.github.io
 - https://github.com/vsp6688/GCP-SSH-ROOT-OPEN
-- https://github.com/hongwenjun/vps_setup/
+- https://github.com/leitbogioro/Tools
 - https://github.com/fscarmen/sing-box
