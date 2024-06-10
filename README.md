@@ -1,7 +1,8 @@
-# AllinOne
+# 小鸡All in One
 
 准备
 ```
+apt update
 apt install sudo curl wget
 ```
 ----
