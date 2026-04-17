@@ -80,7 +80,7 @@ ss(){
 
 #9 安装Tg专用代理（Go版）
 ip_check(){
-    bash <(curl -Ls https://Check.Place) -I
+    bash <(curl -Ls https://Check.Place) -- -I
 }
 
 #10 检测回程
