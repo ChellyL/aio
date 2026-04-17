@@ -79,8 +79,8 @@ ss(){
 }
 
 #9 安装Tg专用代理（Go版）
-Tg_go(){
-    bash <(curl -s -L wget https://raw.githubusercontent.com/ChellyL/Docker-mtproto/main/go_mtg.sh)
+ip_check(){
+    bash <(curl -Ls https://Check.Place) -I)
 }
 
 #10 检测回程
@@ -177,7 +177,7 @@ green "05. 流媒体测试"
 green "06. warp设置"
 green "07. 使用root登录[适合甲骨文、AZ等]"
 green "08. acme证书管理"
-green '09. Tg代理mtg'
+green '09. IP质量检测'
 green "10. BestTrace去程回程检测"
 green "11. 萌咖DD脚本"
 white "---------------------------------------------------------------"
@@ -227,7 +227,7 @@ case "$num" in
     acme
     ;;
     9)
-    Tg_go
+    ip_check
     ;;
     10)
     BestTrace
